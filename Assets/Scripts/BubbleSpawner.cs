@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BubbleSpawner : MonoBehaviour
 {
+    [SerializeField] AudioClip[] popSounds;
+    [SerializeField] AudioSource audioSource;
+
     [SerializeField] GameObject[] bubblePrefabs;
     [SerializeField] Vector2 spawnAreaMin;
     [SerializeField] Vector2 spawnAreaMax;
     [SerializeField] float minSpawnInterval = 0.5f;
     [SerializeField] float maxSpawnInterval = 3.0f;
+
+    Transform prefabRef;
 
     void Start()
     {
@@ -21,6 +26,14 @@ public class BubbleSpawner : MonoBehaviour
 
         GameObject bubblePrefab = bubblePrefabs[Random.Range(0, bubblePrefabs.Length)];
 
-        Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
+        prefabRef = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity).transform;
+        prefabRef.parent = transform;
+    }
+
+    public void PlayPopSound()
+    {
+        audioSource.clip = popSounds[Random.Range(0, popSounds.Length - 1)];
+
+        audioSource.Play();
     }
 }

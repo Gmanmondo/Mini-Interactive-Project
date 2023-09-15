@@ -12,6 +12,8 @@ public class BubblePop : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
+                transform.parent.GetComponent<BubbleSpawner>().PlayPopSound();
+
                 Destroy(gameObject);
             }
         }
