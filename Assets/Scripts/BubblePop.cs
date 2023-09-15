@@ -6,13 +6,13 @@ public class BubblePop : MonoBehaviour
 {   
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider != null && hit.collider.gameObject == gameObject) // Check if clicked on this bubble
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
-                Destroy(gameObject); // Destroy the bubble
+                Destroy(gameObject);
             }
         }
     }
